@@ -47,7 +47,7 @@ def top_pairs(item_counts, pair_counts, frequent_items, frequent_pairs):
         union = pair_counts[indices[0]][indices[1]]
         conf.append(union / total)
     rule_conf_pairs = list(zip(rules, conf))
-    top_five_conf = sorted(rule_conf_pairs, reverse=True, key=lambda x: (x[1], x[0][0]))[:5]
+    top_five_conf = sorted(rule_conf_pairs, key=lambda x: (-x[1], x[0][0]))[:5]
     return top_five_conf
 
 
@@ -88,7 +88,7 @@ def top_triples(pair_counts, triple_counts, frequent_items, frequent_triples):
         union = triple_counts[tuple(sorted(t))]
         conf.append(union / total)
     rule_conf_triples = list(zip(rules, conf))
-    top_five_conf = sorted(rule_conf_triples, reverse=True, key=lambda x: (x[1], x[0][0], x[0][1]))[:5]
+    top_five_conf = sorted(rule_conf_triples, key=lambda x: (-x[1], x[0][0], x[0][1]))[:5]
     return top_five_conf
 
 
@@ -109,3 +109,15 @@ def main():
 
 if __name__ == '__main__':
     main()
+    # Top 5 rules for pairs:
+    # DAI93865 -> FRO40251: 1.0
+    # GRO85051 -> FRO40251: 0.999176276771005
+    # GRO38636 -> FRO40251: 0.9906542056074766
+    # ELE12951 -> FRO40251: 0.9905660377358491
+    # DAI88079 -> FRO40251: 0.9867256637168141
+    # Top 5 rules for tuples:
+    # (DAI23334, ELE92920) -> DAI62779: 1.0
+    # (DAI31081, GRO85051) -> FRO40251: 1.0
+    # (DAI55911, GRO85051) -> FRO40251: 1.0
+    # (DAI62779, DAI88079) -> FRO40251: 1.0
+    # (DAI75645, GRO85051) -> FRO40251: 1.0
