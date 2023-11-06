@@ -93,7 +93,7 @@ def top_triples(pair_counts, triple_counts, frequent_items, frequent_triples):
 
 
 def main():
-    with open("browsing.txt", "r") as f:
+    with open("A2/browsing.txt", "r") as f:
         item_counts, frequent_items = pass1(f)
         pair_counts, frequent_pairs = pass2(frequent_items, f)
         pairs = top_pairs(item_counts, pair_counts, frequent_items, frequent_pairs)
